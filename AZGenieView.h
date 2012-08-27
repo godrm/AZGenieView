@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-#define AZANIMATION_FRAMERATE 50
+#define AZANIMATION_FRAMERATE 30
+#define DRAW_PATH 1
+#define PROCESS_ANIMATION 0
 
 @protocol AZGenieAnimationDelegate
 @optional

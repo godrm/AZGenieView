@@ -25,6 +25,23 @@
     self.renderPath = nil;
 }
 
+#if DRAW_PATH
+- (void)drawRect:(CGRect)rect
+{
+    if (self.renderPath==nil)
+    {
+        [super drawRect:rect];
+        return;
+    }
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    CGContextAddPath(ctx, self.renderPath);
+    CGContextSetRGBFillColor(ctx, 1, 1, 1, 1);
+    CGContextFillPath(ctx);
+}
+#endif
+
 - (void)setImageSlices
 {
     //Set Image Slices
@@ -214,8 +231,10 @@
 {
     if (isAnimation)
         return;
+#if PROCESS_ANIMATION
     isAnimation = YES;
     animationView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, targetFrame.origin.y)];
+    
     NSArray *newImages;
     if (showing)
     {
@@ -232,7 +251,14 @@
     [self addSubview:animationView];
     
     doneTimer = [NSTimer scheduledTimerWithTimeInterval:duration target:self selector:@selector(animationDone:) userInfo:nil repeats:NO];
+#else
+    animationView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, targetFrame.origin.y)];
+    [animationView setImage:[allFrames objectAtIndex:AZANIMATION_FRAMERATE/2]];
+    [self addSubview:animationView];
+#endif
+#if DRAW_PATH
+    [self setNeedsDisplay];
+#endif
 }
-
 
 @end
