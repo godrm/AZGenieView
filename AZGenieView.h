@@ -10,7 +10,7 @@
 
 #define AZANIMATION_FRAMERATE 30
 #define DRAW_PATH 1
-#define PROCESS_ANIMATION 0
+#define PROCESS_ANIMATION 1
 
 @protocol AZGenieAnimationDelegate
 @optional
