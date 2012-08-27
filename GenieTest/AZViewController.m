@@ -22,6 +22,7 @@
 @synthesize genieView;
 @synthesize flowerView;
 @synthesize targetButton;
+@synthesize isShow;
 
 - (void)viewDidLoad
 {

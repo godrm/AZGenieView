@@ -10,6 +10,11 @@
 
 @implementation AZGenieView
 
+//For before Xcode 4.4
+@synthesize renderImage;
+@synthesize renderPath;
+@synthesize delegate;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
